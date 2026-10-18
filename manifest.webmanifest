@@ -1,1 +1,1 @@
-{"name": "Caça Científica MUDI Ao Vivo", "short_name": "MUDI Caça", "start_url": "./", "display": "standalone", "background_color": "#18092c", "theme_color": "#42176c"}
+{"name": "Caça aos Tesouros do MUDI", "short_name": "Tesouros MUDI", "start_url": "./index.html", "display": "standalone", "background_color": "#0b2255", "theme_color": "#123879"}

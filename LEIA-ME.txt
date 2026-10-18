@@ -1,21 +1,14 @@
-CAÇA CIENTÍFICA MUDI — TESTE SEM QR CODES
+CAÇA AOS TESOUROS DO MUDI
 
-PUBLICAÇÃO
-1. Extraia o ZIP.
-2. Envie index.html e a pasta assets/ à raiz de um repositório GitHub Pages.
-3. Abra o endereço HTTPS pelo Chrome no Android.
+1. Publique todos os arquivos e pastas em um repositório GitHub Pages (mesma estrutura).
+2. Abra index.html no endereço HTTPS para permitir leitura de câmera em navegadores compatíveis.
+3. Imprima os sete QR Codes da pasta qr e distribua nas estações.
+4. Cada leitura desbloqueia o objeto; toque em Adicionar ao mapa para coletar.
+5. A coleção é salva no navegador do próprio aparelho (localStorage). Não sincroniza aparelhos diferentes.
+6. As imagens dos objetos giram por quadros (simulação de 3D), não são modelos GLB.
+7. O mapa é artístico; os marcadores não são GPS ou posições físicas reais.
+8. O PWA salva recursos à medida que são acessados; para garantir offline, abra as estações online antes.
 
-MODO AR ESPACIAL
-1. Iniciar AR espacial.
-2. Aponte para superfícies com textura e boa iluminação.
-3. Toque na tela quando aparecer o círculo para posicionar coração, pulmões e cérebro.
-4. Toque em Começar caça e entregue o celular à pessoa que vai procurar os órgãos.
-5. Caminhe até eles e toque no órgão para responder à pergunta.
+ATUALIZAÇÃO: dois mapas alternáveis (Mapa do MUDI e Trilha da aventura), com progresso único nos dois.
 
-LIMITAÇÕES
-- Requer Chrome Android + aparelho com ARCore/WebXR immersive-ar e hit-test.
-- Os objetos permanecem no ambiente somente durante a sessão; não são persistidos entre sessões, nem compartilhados entre aparelhos.
-- Objetos são representações 3D estilizadas com imagens anatômicas planas na frente, não modelos anatômicos volumétricos 3D.
-- Alguns navegadores podem não oferecer DOM Overlay ou podem não permitir o uso dos botões durante a sessão AR. Nesses casos, o teste de AR pode ser limitado.
-- O modo simulado abre a câmera e sobrepõe imagens sem fixá-las espacialmente.
-- Requer internet para carregar a biblioteca Three.js por CDN, mesmo após instalar a página.
+NOVO: vídeo de apresentação de 10 segundos incluído no botão “Assistir à abertura da missão”. O vídeo está em assets/abertura_mudi.mp4.
