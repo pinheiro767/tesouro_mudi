@@ -1,14 +1,7 @@
-CAÇA AOS TESOUROS DO MUDI
+CAÇA AOS TESOUROS DO MUDI — MAPA DE OBJETOS
 
-1. Publique todos os arquivos e pastas em um repositório GitHub Pages (mesma estrutura).
-2. Abra index.html no endereço HTTPS para permitir leitura de câmera em navegadores compatíveis.
-3. Imprima os sete QR Codes da pasta qr e distribua nas estações.
-4. Cada leitura desbloqueia o objeto; toque em Adicionar ao mapa para coletar.
-5. A coleção é salva no navegador do próprio aparelho (localStorage). Não sincroniza aparelhos diferentes.
-6. As imagens dos objetos giram por quadros (simulação de 3D), não são modelos GLB.
-7. O mapa é artístico; os marcadores não são GPS ou posições físicas reais.
-8. O PWA salva recursos à medida que são acessados; para garantir offline, abra as estações online antes.
+Abra index.html para jogar. Os sete objetos estão posicionados sobre os dois mapas. Antes da leitura do QR, aparecem como silhuetas; após a coleta, ficam coloridos.
 
-ATUALIZAÇÃO: dois mapas alternáveis (Mapa do MUDI e Trilha da aventura), com progresso único nos dois.
+QR Codes não são exibidos no jogo. Para imprimir, abra QR_Codes_Impressao.html separadamente (material da organização).
 
-NOVO: vídeo de apresentação de 10 segundos incluído no botão “Assistir à abertura da missão”. O vídeo está em assets/abertura_mudi.mp4.
+Para leitura pela câmera, hospede o jogo em HTTPS, por exemplo GitHub Pages. O código manual continua disponível.
