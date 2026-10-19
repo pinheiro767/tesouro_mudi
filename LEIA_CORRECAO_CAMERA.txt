@@ -1,0 +1,1 @@
+CORRECAO: inserir codigo agora abre camera do ambiente e coloca o objeto com transparencia sobre video ao vivo. O leitor QR interno ainda depende de BarcodeDetector ou biblioteca externa. A visualizacao nao ancora o objeto no espaco 3D. Publique em HTTPS e autorize camera. Se houver versao antiga em cache, limpe dados do site. Nao execute arquivos desconhecidos.
