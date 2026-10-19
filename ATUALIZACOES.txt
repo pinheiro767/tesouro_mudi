@@ -1,0 +1,1 @@
+Fundo azul substituído pela fachada do MUDI enviada. Álbum e guarda-roupa adicionados à tela principal com imagens fornecidas e botões funcionais. Mantidos os sete QR codes, roupas, cards e vídeo final. Removida nota técnica visível. Para câmera, publicar em HTTPS.
