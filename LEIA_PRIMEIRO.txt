@@ -1,0 +1,13 @@
+MAYA — CAÇA AOS TESOUROS DO MUDI
+
+Abra index.html para conhecer os mapas, figurinos e coleção. Para câmera, publique toda a pasta em HTTPS, como GitHub Pages.
+
+Câmera: QR Code lido pelo BarcodeDetector do navegador, com alternativa jsQR carregada da CDN quando necessário (requer internet). A câmera precisa de permissão.
+
+O objeto é sobreposto ao vídeo e gira por imagens de diferentes ângulos. NÃO é rastreamento espacial AR nem um modelo 3D GLB.
+
+Códigos: MUDI-TESOURO-01 a 07. Arquivo QR_Codes_Impressao.html para impressão; QR codes não aparecem na tela do jogo.
+
+7 perguntas; acerto +100 moedas; roupas desbloqueadas; compra de card surpresa por 50 moedas; dados salvos apenas no navegador.
+
+O vídeo de abertura é o arquivo enviado. Não executa instaladores, EXEs ou programas externos.

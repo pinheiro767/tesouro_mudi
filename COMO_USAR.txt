@@ -1,0 +1,9 @@
+MAYA — CÂMERA E QR CODE
+
+1. Publique todos os arquivos deste pacote em HTTPS (por exemplo GitHub Pages).
+2. Abra o endereço no Chrome do celular e permita acesso à câmera.
+3. Imprima os QR Codes usando QR_Codes_Impressao.html. NÃO exiba esses códigos no mapa do jogador.
+4. Toque em Ler QR Code e aponte para o código físico. O objeto aparece flutuando SOBRE o vídeo da câmera.
+5. O objeto é uma sobreposição visual com rotação por quadros; NÃO é rastreamento espacial WebXR.
+6. Sem BarcodeDetector nativo, o leitor alternativo jsQR requer internet.
+7. Pacote contém apenas HTML/CSS/JS, imagens, vídeo e códigos QR. Nenhum executável.
