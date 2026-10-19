@@ -1,0 +1,8 @@
+LEITURA QR - MUDI MAYA
+1. Publique todos os arquivos no GitHub Pages e abra a URL https://.
+2. No Chrome do celular, autorize a camera para o site.
+3. Use os QR da pasta qr/ impressos com boa iluminacao e tamanho minimo de 4 cm.
+4. Se a camera abrir mas nao reconhecer, verifique a mensagem abaixo do video.
+5. Em navegadores sem BarcodeDetector, o jogo precisa de internet para carregar jsQR.
+6. Esta versao nao inclui a biblioteca jsQR local porque ela nao estava disponivel no ambiente de empacotamento.
+7. A opcao de inserir codigo continua disponivel.

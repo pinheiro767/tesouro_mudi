@@ -33,11 +33,15 @@ function stopCamera(){scanActive=false;if(scanTimer){clearTimeout(scanTimer);sca
 function openCode(){stopCamera();el('modalTitle').textContent='🔎 Desbloquear tesouro';el('objectArea').innerHTML='<label for="code">Digite o código impresso na estação:</label><input id="code" placeholder="MUDI-TESOURO-01" autocomplete="off">';el('detail').textContent='O código correto libera um tesouro. Nenhuma estação começa desbloqueada.';el('modalActions').innerHTML='<button class="btn green" onclick="redeem()">✨ Descobrir</button><button class="btn blue" onclick="scan()">📷 Usar câmera</button>';el('error').textContent='';if(!el('modal').open)el('modal').showModal()}
 function redeem(raw){const s=String(raw||el('code')?.value||'').trim().toUpperCase();const m=s.match(/MUDI-TESOURO-0?([1-7])(?:\b|$)/)||s.match(/[?&]TESOURO=([1-7])(?:&|$)/);if(!m){el('error').textContent='Código não reconhecido. Confira o QR Code da estação.';return}const i=Number(m[1])-1;if(scannedFromCamera){showFloating(i)}else{openTreasure(i,true)}}
 function showFloating(i){scanActive=false;active=i;frame=0;scannedFromCamera=false;el('modalTitle').textContent='✨ '+items[i].name+' encontrado no ambiente!';const src=asset(i);const camera=el('cameraLive');if(camera)camera.remove();el('objectArea').innerHTML=`<div class="float-stage" id="floatStage"><video id="arVideo" autoplay muted playsinline></video><img class="floating" id="floatingObject" src="${src}" alt="${items[i].name} flutuando sobre a câmera"><div class="hint">✨ Tesouro no ambiente! Arraste para girar • Depois responda à pergunta</div></div>`;const v=el('arVideo');if(stream){v.srcObject=stream;v.play().catch(()=>{})}el('detail').textContent=items[i].fact;el('modalActions').innerHTML='<button class="btn green" onclick="showQuiz()">⭐ Coletar e colocar no mapa</button><button class="btn blue" onclick="stopCamera();openTreasure(active,true)">🔄 Ver objeto sem câmera</button>';el('error').textContent='';let last=null;const obj=el('floatingObject');obj.addEventListener('pointerdown',e=>{last=e.clientX;obj.setPointerCapture(e.pointerId)});obj.addEventListener('pointermove',e=>{if(last===null||!items[active].frames)return;let d=e.clientX-last;if(Math.abs(d)>18){frame=(frame+(d>0?1:-1)+items[active].frames)%items[active].frames;obj.src=asset(active,frame);last=e.clientX}});obj.addEventListener('pointerup',()=>last=null);obj.addEventListener('pointercancel',()=>last=null)}
-async function loadJsQR(){if(window.jsQR)return true;return new Promise(resolve=>{const script=document.createElement('script');script.src='https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js';script.onload=()=>resolve(!!window.jsQR);script.onerror=()=>resolve(false);document.head.appendChild(script)})}
+async function loadJsQR(){
+ if(window.jsQR)return true;
+ const sources=['./jsQR.js','https://unpkg.com/jsqr@1.4.0/dist/jsQR.js','https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js','https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js'];
+ for(const src of sources){const ok=await new Promise(resolve=>{const script=document.createElement('script');script.src=src;script.onload=()=>resolve(!!window.jsQR);script.onerror=()=>resolve(false);document.head.appendChild(script)});if(ok)return true}return false;
+}
 async function scan(){stopCamera();scannedFromCamera=false;el('modalTitle').textContent='📷 Aponte para o QR Code';el('objectArea').innerHTML='<video class="scan-video" id="cameraLive" autoplay muted playsinline></video><p class="scan-guide">Centralize o QR Code impresso na imagem e aguarde a leitura.</p>';el('detail').textContent='Após a leitura, o objeto aparecerá flutuando sobre o ambiente captado pela câmera.';el('modalActions').innerHTML='<button class="btn blue" onclick="openCode()">⌨️ Digitar código</button>';el('error').textContent='';if(!el('modal').open)el('modal').showModal();if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia){el('error').textContent='A câmera precisa de HTTPS (GitHub Pages) ou localhost. Abra a versão publicada, não o arquivo local.';return}
 let detector=null;if('BarcodeDetector'in window){try{detector=new BarcodeDetector({formats:['qr_code']})}catch(e){}}
-if(!detector){const loaded=await loadJsQR();if(!loaded){el('error').textContent='Leitor QR indisponível. Conecte-se à internet para carregar o leitor alternativo ou digite o código.';return}}
-try{stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}}});const video=el('cameraLive');if(!video){stopCamera();return}video.srcObject=stream;await video.play();scanActive=true;const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d',{willReadFrequently:true});async function loop(){if(!scanActive)return;try{let value=null;if(detector){const r=await detector.detect(video);if(r.length)value=r[0].rawValue}else if(video.readyState>=2){const w=640,h=Math.max(240,Math.round(w*video.videoHeight/video.videoWidth));canvas.width=w;canvas.height=h;ctx.drawImage(video,0,0,w,h);const data=ctx.getImageData(0,0,w,h);const result=window.jsQR(data.data,w,h,{inversionAttempts:'attemptBoth'});if(result)value=result.data}if(value){scannedFromCamera=true;redeem(value);if(!scanActive)return}}catch(e){}if(scanActive)scanTimer=setTimeout(loop,180)}loop()}catch(e){stopCamera();el('error').textContent='Não foi possível acessar a câmera. Verifique a permissão do navegador, o HTTPS e se outra aplicação está usando a câmera.'}}
+if(!detector){el('error').textContent='Preparando leitor QR alternativo…';const loaded=await loadJsQR();if(!loaded){el('error').textContent='O navegador não possui leitor QR nativo e não conseguiu carregar o leitor alternativo. Verifique a conexão ou use Chrome atualizado.';return}el('error').textContent='Leitor pronto. Aponte para o QR Code.'}else{el('error').textContent='Leitor nativo pronto. Aponte para o QR Code.'}
+try{stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}}});const video=el('cameraLive');if(!video){stopCamera();return}video.srcObject=stream;await video.play();scanActive=true;const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d',{willReadFrequently:true});async function loop(){if(!scanActive)return;try{let value=null;if(detector){const r=await detector.detect(video);if(r.length)value=r[0].rawValue}else if(video.readyState>=2){const w=640,h=Math.max(240,Math.round(w*video.videoHeight/video.videoWidth));canvas.width=w;canvas.height=h;ctx.drawImage(video,0,0,w,h);const data=ctx.getImageData(0,0,w,h);const result=window.jsQR(data.data,w,h,{inversionAttempts:'attemptBoth'});if(result)value=result.data}if(value){if(/MUDI-TESOURO-0?[1-7]/i.test(value)||/[?&]TESOURO=[1-7]/i.test(value)){scanActive=false;scannedFromCamera=true;redeem(value);return}else{el('error').textContent='QR reconhecido, mas não pertence ao jogo MUDI.'}}}catch(e){}if(scanActive)scanTimer=setTimeout(loop,180)}loop()}catch(e){stopCamera();el('error').textContent='Não foi possível acessar a câmera. Verifique a permissão do navegador, o HTTPS e se outra aplicação está usando a câmera.'}}
 setMap(mapMode);if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
 <style>
@@ -80,5 +84,55 @@ function answerQuiz(i){if(i!==quizzes[active].c){el('error').textContent='Ainda 
 if(!localStorage.getItem('maya-integrated-v1')){found=[];localStorage.setItem('mudi-tesouros-v2','[]');localStorage.setItem('maya-integrated-v1','1')}
 resetCollection=function(){if(!confirm('Reiniciar missão, moedas, figurinos e cards neste aparelho?'))return;found=[];coins=0;ownedCards=[];outfit=0;walkPos=0;saved();localStorage.setItem('mudi-tesouros-v2','[]');render();el('message').textContent='Missão reiniciada.'};
 render();
+</script>
+
+<style>
+#mayaWalker{position:absolute;z-index:12;left:10%;top:84%;width:clamp(45px,8vw,92px);height:clamp(75px,14vw,155px);transform:translate(-50%,-88%);pointer-events:none;transition:left .8s ease-in-out,top .8s ease-in-out;filter:drop-shadow(0 6px 5px #001c47)}
+#mayaWalker img{width:100%;height:100%;object-fit:contain;object-position:bottom}
+#mayaWalker.walking img{animation:mayaSteps .24s ease-in-out infinite alternate}
+#mayaWalker .mayaTag{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);border-radius:12px;background:#ffda35;color:#162a55;font-weight:900;font-size:11px;padding:2px 8px}
+@keyframes mayaSteps{to{transform:translateY(-7px) rotate(2deg)}}
+.walk button{touch-action:manipulation}
+</style>
+<script>
+(function(){
+const hero=document.querySelector('.hero');
+const walker=document.createElement('div');
+walker.id='mayaWalker';
+walker.innerHTML='<img src="assets/roupas/original.webp" alt="Maya caminhando"><span class="mayaTag">MAYA</span>';
+hero.appendChild(walker);
+const paths=[
+ [[10,83],[36,49],[59,47],[82,46],[40,70],[64,75],[87,76],[55,89]],
+ [[8,80],[35,36],[57,35],[84,38],[18,70],[65,78],[90,76],[50,90]]
+];
+function drawWalker(){
+ const pt=paths[typeof mapMode==='number'?mapMode:0][Math.min(7,Math.max(0,walkPos))];
+ walker.style.left=pt[0]+'%';walker.style.top=pt[1]+'%';
+ const image=walker.querySelector('img');
+ image.src='assets/roupas/'+costumeList[outfit][1]+'.webp';
+}
+let walkingTimeout;
+window.moveMaya=function(dir){
+ const old=walkPos;
+ walkPos=Math.max(0,Math.min(7,walkPos+dir));
+ saved();drawWalker();
+ walker.classList.add('walking');
+ clearTimeout(walkingTimeout);
+ walkingTimeout=setTimeout(()=>walker.classList.remove('walking'),850);
+ const destination=walkPos===0?'Entrada do MUDI':walkPos===7?'Chegada da missão':'Estação '+walkPos+' — '+items[walkPos-1].name;
+ el('message').textContent=old===walkPos?'Maya chegou ao limite da trilha.':'🚶 Maya está caminhando para: '+destination+'. Procure o QR Code físico.';
+ refreshHud();
+};
+const previousMap=window.setMap;
+window.setMap=function(n){previousMap(n);drawWalker()};
+const previousHud=window.refreshHud;
+window.refreshHud=function(){previousHud();drawWalker()};
+document.addEventListener('keydown',function(e){
+ if(document.querySelector('dialog[open]')||['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
+ if(e.key==='ArrowRight'){e.preventDefault();moveMaya(1)}
+ if(e.key==='ArrowLeft'){e.preventDefault();moveMaya(-1)}
+});
+drawWalker();
+})();
 </script>
 </body></html>

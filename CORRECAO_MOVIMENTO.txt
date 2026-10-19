@@ -1,0 +1,1 @@
+Maya agora aparece sobre os dois mapas e caminha visualmente ao tocar em Caminhar ◀/▶ ou nas setas do teclado. A caminhada é por estações ilustradas, não por GPS. Publique todo o conteúdo da pasta em HTTPS e atualize a página sem cache.
