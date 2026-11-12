@@ -1,1 +1,9 @@
-{"name": "Caça aos Tesouros do MUDI", "short_name": "Tesouros MUDI", "start_url": "./index.html", "display": "standalone", "background_color": "#0b2255", "theme_color": "#123879"}
+{
+  "name": "Caça aos Tesouros MUDI — Maya e Theo (TESTE)",
+  "short_name": "MUDI TESTE",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b2255",
+  "theme_color": "#123879",
+  "description": "Versão isolada de avaliação: Maya e Theo, sete tesouros e colecionáveis."
+}

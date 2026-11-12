@@ -1,0 +1,25 @@
+/* Caça aos Tesouros do MUDI — complemento isolado do Theo */
+.theo-choose{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:14px 0;padding:12px;border:2px solid #f9d76a;border-radius:20px;background:linear-gradient(120deg,#153368,#0b5770);box-shadow:0 5px 18px #0004}
+.theo-choose .theo-choose-title{font-weight:900;font-size:17px;flex:1 1 170px;color:#fff}
+.theo-options{display:flex;gap:10px;flex:2 1 320px;justify-content:center}
+.theo-option{flex:1 1 0;display:flex;align-items:center;gap:9px;border:3px solid #8cafdb;border-radius:15px;padding:7px 12px;background:#173d78;color:white;font-weight:900;min-width:0}
+.theo-option img{height:65px;width:49px;object-fit:contain;flex:none}
+.theo-option[aria-pressed="true"]{background:#ffda56;color:#102953;border-color:#fff;box-shadow:0 0 0 3px #ffda5670}
+.theo-catalog{display:grid;grid-template-columns:repeat(auto-fit,minmax(124px,1fr));gap:12px}
+.theo-catalog-item{display:flex;flex-direction:column;align-items:center;gap:5px;border:2px solid #b4c7eb;border-radius:16px;background:#16346a;color:#fff;padding:10px 7px;min-width:0;text-align:center;cursor:pointer}
+.theo-catalog-item[aria-pressed="true"]{border-color:#fce05f;background:#2c4779}
+.theo-catalog-item img{width:100%;height:170px;object-fit:contain;filter:drop-shadow(0 7px 5px #0006)}
+.theo-catalog-item strong{font-size:13px;line-height:1.15}.theo-catalog-item small{font-size:12px;line-height:1.25}
+.theo-card-collection{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:12px}
+.theo-card-cell{border:2px solid #d8b760;border-radius:15px;padding:8px;background:#fff;color:#15335a;text-align:center;cursor:pointer}
+.theo-card-cell img{width:100%;height:180px;object-fit:contain}.theo-card-cell.locked img{filter:grayscale(1) brightness(.5);opacity:.65}
+.theo-card-cell strong{display:block;font-size:12px}.theo-card-cell small{display:block;font-size:12px}
+.theo-coins{display:inline-block;padding:8px 12px;border-radius:12px;background:#ffe08a;color:#192c54;font-weight:900;margin:6px 0 12px}
+.theo-info{font-size:14px;line-height:1.45}
+.theo-reward-img{display:block;height:235px;max-width:100%;object-fit:contain;margin:5px auto}
+@media(max-width:520px){.theo-choose{padding:10px;gap:7px}.theo-option{padding:7px;gap:5px;font-size:14px}.theo-option img{height:57px;width:44px}.theo-choose .theo-choose-title{flex:1 1 100%;text-align:center}.theo-catalog{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Figurinhas provisórias exibem os próprios trajes aprovados */
+.theo-card-cell img{height:140px;object-fit:contain}
+
+.theo-card-cell img{height:200px;width:100%;object-fit:contain}.theo-card-cell.locked img{filter:grayscale(1) brightness(.5);opacity:.62}

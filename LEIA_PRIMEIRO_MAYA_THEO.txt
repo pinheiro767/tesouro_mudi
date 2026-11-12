@@ -1,0 +1,48 @@
+CAÇA AOS TESOUROS DO MUDI — MAYA + THEO — CÓPIA DE TESTE
+================================================================
+
+Este ZIP é um jogo PWA completo de teste. Contém os arquivos do jogo original
+salvo na biblioteca, incluindo mapas, vídeos, roupas e álbum da Maya, sete QR
+Codes, além dos seis trajes APROVADOS por você e sete figurinhas do Theo.
+
+COMO TESTAR
+1) Extraia TODO o ZIP em uma pasta (não abra o HTML dentro do ZIP).
+2) Abra index.html para explorar roupas, moedas, figurinas e troca de personagens.
+3) A câmera exige HTTPS ou localhost; abrir index.html por duplo clique NÃO é
+   suficiente para testar a câmera. Teste cópia publicada em endereço HTTPS
+   SEPARADO do jogo original, NUNCA por cima do site que já funciona.
+4) Teste, na versão HTTPS, a câmera e cada um dos 7 QR Codes impressos.
+5) Confirme que a Maya ainda ganha moedas, troca de roupas e cola figurinhas;
+   depois confira Theo e escolha se deseja publicar.
+
+ATENÇÃO IMPORTANTE
+Este pacote foi montado sobre um ZIP anterior do jogo disponível na sua biblioteca:
+MUDI_Maya_Album_Cards_Colagem_Corrigida.zip. Não foi possível obter o ZIP
+atual da versão publicada no GitHub nesta etapa. Portanto o ZIP de teste pode
+não incluir mudanças que você realizou depois naquele site. NÃO substitua o
+repositório pinheiro767/tesouro_mudi com este ZIP sem antes comparar os arquivos.
+O site original foi mantido intacto.
+
+Os dados no teste usam prefixo próprio mudi-teste-theo-v1: e não alteram as
+conquistas salvas no jogo original sob a mesma origem github.io.
+
+SISTEMA DO THEO
+6 trajes: Explorador gratuito; Cientista 25; Investigador 35;
+Mago 45; Astronauta 65; Mergulhador 85 moedas.
+Cada estação concluída do MUDI dá direito a 100 moedas para Theo uma vez;
+7 figurinhas, uma por estação, custando 20 moedas cada, para comprar e colar.
+O leitor QR original, as estações e as imagens da Maya não foram reescritos.
+
+Apenas testamos fluxo simulado no navegador. Teste físico de câmera/QR ainda
+precisa ser realizado. Consulte RELATORIO_INTEGRIDADE.json para o inventário.
+
+TESTES TÉCNICOS REALIZADOS
+- Seleção Maya ↔ Theo e retorno do retrato original da Maya.
+- Guarda-roupa com 6 trajes e débito de moedas.
+- Álbum com 7 figurinhas, compra e colagem.
+- Código de teste MUDI-TESOURO-01 -> desafio Estômago -> resposta correta.
+- Recompensa de 100 moedas para Theo sem acrescentar moedas à Maya.
+- Sem erros JavaScript detectados na simulação de navegação.
+- Os 7 PNGs QR originais têm conteúdo idêntico ao ZIP da Maya.
+IMPORTANTE: esses testes são em navegador simulado; câmera e QR físico exigem
+um teste final em celular ou tablet via HTTPS antes de publicar.
