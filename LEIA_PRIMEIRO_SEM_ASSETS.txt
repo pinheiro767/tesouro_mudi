@@ -1,0 +1,33 @@
+MUDI — ATUALIZAÇÃO LEVE SEM A PASTA ASSETS
+==========================================
+
+Este pacote NÃO contém a pasta assets e NÃO contém vídeos, mapas ou imagens de Maya/ Theo.
+Ele inclui SOMENTE os arquivos de programação e instalação PWA (index.html,
+theo.js, theo.css, manifest.json, manifest.webmanifest, sw.js e icons/).
+
+ANTES DE USAR
+1. Guarde um backup do repositório atual tesouro_mudi e compare seu index.html.
+2. Confirme que no seu projeto já existem as pastas:
+   assets/ (Maya, mapas, vídeos e demais arquivos originais)
+   assets/theo/roupas/ (theo_01.png até theo_06.png)
+   assets/theo/figurinhas/ (theo_card_01.png até theo_card_07.png)
+   Se não existem os arquivos de Theo, você precisa copiá-los separadamente.
+3. EXTRAIA o ZIP. Copie o CONTEÚDO para a mesma pasta onde está o index.html do seu
+   jogo; não apague assets nem envie o ZIP fechado para o GitHub Pages.
+4. Teste de preferência em uma cópia isolada (outro domínio) antes de trocar a
+   página publicada. A versão deste pacote ainda se baseia em uma CÓPIA DE TESTE
+   anterior da Maya. Ela pode não incluir alterações recentes do seu site.
+5. Abra a URL HTTPS no navegador do celular (não via file://), atualize a página,
+   e verifique o menu 'Instalar app' ou 'Adicionar à tela inicial'.
+
+IMPORTANTE SOBRE PROGRESSO: esta versão de teste utiliza o armazenamento
+mudi-teste-theo-v1: para separar seus dados. Isso NÃO é uma migração validada
+das conquistas de quem já usa a versão pública. Não publique por cima do
+site principal sem confirmar a preservação dos dados existentes.
+
+QR Codes: este pacote não modifica a lógica de leitura do jogo. A compatibilidade
+com versões mais recentes do site precisa ser verificada antes de publicar.
+
+O service worker foi ajustado para não depender do pré-carregamento de todos
+os arquivos em assets durante a instalação. Os assets necessários devem continuar
+existindo no servidor; para usá-los offline, é preciso abri-los ao menos uma vez.
